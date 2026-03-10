@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FinAgentX Loan Status</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/sessionManager.js"></script>
+</head>
+
+<body>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="chat.html">Chat</a>
+    <a href="documents.html">Documents</a>
+    <a href="status.html">Status</a>
+  </div>
+
+  <div class="center-box">
+    <h2>Loan Status for Session</h2>
+    <p id="sessId" style="font-size:13px;opacity:.8;"></p>
+    <div class="status-pill" id="statusPill">
+      Current Status: <span id="loanStatus">Not started</span>
+    </div>
+    <button style="margin-top:20px;" onclick="fetchStatus()">Refresh Status</button>
+    <div id="sanctionBlock" style="margin-top:25px;display:none;width:100%;max-width:700px;">
+      <div class="sanction-paper">
+        <div class="letter-header">
+          <div class="logo-box">FinAgentX</div>
+          <div class="date-box">Date: <span id="curDate"></span></div>
+        </div>
+        <div class="letter-content">
+          <pre id="sanctionText"></pre>
+        </div>
+        <div class="letter-footer">
+          <div class="signature">
+            <p>Authorized Signatory</p>
+            <p><strong>FinAgentX AI Systems</strong></p>
+          </div>
+          <div class="stamp-seal">SANCTIONED</div>
+        </div>
+      </div>
+      <button class="print-btn" onclick="window.print()">Download Sanction Letter</button>
+    </div>
+  </div>
+
+  <script>
+    const BACKEND_URL = "http://localhost:5000";
+    document.getElementById("sessId").innerText = "Session: " + session_id;
+
+    async function fetchStatus() {
+      try {
+        const res = await fetch(BACKEND_URL + "/state?session_id=" + session_id);
+        const data = await res.json();
+        document.getElementById("loanStatus").innerText = data.status || "Unknown";
+
+        if (data.sanction_letter) {
+          document.getElementById("sanctionBlock").style.display = "block";
+          document.getElementById("sanctionText").innerText = data.sanction_letter;
+          document.getElementById("curDate").innerText = new Date().toLocaleDateString();
+        }
+      } catch (e) {
+        console.error(e);
+        alert("Could not fetch status. Is backend running?");
+      }
+    }
+
+    fetchStatus();
+  </script>
+</body>
+
+</html>

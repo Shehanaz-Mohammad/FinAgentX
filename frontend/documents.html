@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FinAgentX Documents</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/sessionManager.js"></script>
+</head>
+<body>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="chat.html">Chat</a>
+    <a href="documents.html">Documents</a>
+    <a href="status.html">Status</a>
+  </div>
+
+  <div class="center-box">
+    <h2>Document Upload (Mock)</h2>
+    <p style="max-width:480px;opacity:.85;">
+      For the hackathon demo, this simulates KYC & bank statement upload.
+      You don't need to actually process the files — just show that the journey supports them.
+    </p>
+    <input type="file" style="margin-top:20px;color:white;" multiple>
+    <button style="margin-top:20px;" onclick="alert('For demo: Documents marked as received for session '+session_id);">
+      Mark as Uploaded
+    </button>
+  </div>
+</body>
+</html>

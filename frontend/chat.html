@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FinAgentX Chat</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/sessionManager.js"></script>
+  <script src="http://localhost:5000/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="chat.html">Chat</a>
+    <a href="documents.html">Documents</a>
+    <a href="status.html">Status</a>
+  </div>
+
+  <div class="center-box"
+    style="width: 100%; max-width: 100%; padding: 0; background: transparent; box-shadow: none; margin-top: 10px;">
+    <!-- <h2 style="text-align:center; margin-bottom: 10px;">FinAgentX Chat</h2> -->
+    <div id="chatContainer"
+      style="width: 98%; height: calc(100vh - 80px); margin: 0 auto; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: white;">
+      <!-- Iframe will be injected here -->
+    </div>
+  </div>
+
+  <script>
+    // Get Session ID from shared manager
+    const currentSessionId = session_id; // defined in sessionManager.js
+    console.log("Embedding Chat for Session:", currentSessionId);
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `http://localhost:5173?session_id=${currentSessionId}`;
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.border = "none";
+
+    document.getElementById("chatContainer").appendChild(iframe);
+  </script>
+</body>
+</body>
+
+</html>
