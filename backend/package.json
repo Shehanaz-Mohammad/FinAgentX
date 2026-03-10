@@ -1,0 +1,19 @@
+{
+  "name": "finagentx-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.19.0",
+    "groq-sdk": "^0.37.0",
+    "node-fetch": "^3.3.2",
+    "socket.io": "^4.8.1"
+  }
+}
